@@ -1,5 +1,6 @@
 db.sqlite3
 settings_local.py
+migrations/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
