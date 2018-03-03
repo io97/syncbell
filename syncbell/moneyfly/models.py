@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 """ カテゴリ """
@@ -23,3 +24,6 @@ class Money(models.Model):
 
     def __str__(self):
         return self.category.name
+
+    def get_absolute_url(self):
+        return reverse("moneyfly:index")
