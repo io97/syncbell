@@ -1,0 +1,15 @@
+{% extends 'money/base.html' %}
+
+{% block title %}SyncBell - Moneyfly{% endblock %}
+
+{% block content %}
+
+{% for money in object_list %}
+{{ money.category.name }}
+
+{% empty %}
+<p>なし</p>
+
+{% endfor %}
+
+{% endblock %}
