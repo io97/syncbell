@@ -1,0 +1,21 @@
+{% extends "moneyfly/base.html" %}
+
+{% block title %}Syncbell - Moneyfly{% endblock %}
+
+{% block content %}
+<main>
+  <div class="add_wrapper">
+    <div class="add_formarea">
+      <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">作成</button>
+      </form>
+    </div>
+  </div>
+  <a class="btn back" href="{% url 'moneyfly:index' %}">
+    戻る
+  </a>
+
+</main>
+{% endblock %}

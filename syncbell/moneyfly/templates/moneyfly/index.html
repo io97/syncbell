@@ -1,0 +1,56 @@
+{% extends "moneyfly/base.html" %}
+
+{% block title %}Syncbell - MoneyFly{% endblock %}
+
+{% block content %}
+<main>
+  <div class="nav">
+    <a class="add_money" href="{% url 'moneyfly:create' %}">
+      新規追加
+    </a>
+    <a class="fa fa-cog fa-2x" href="#"></a>
+  </div>
+
+  <p class="summoney">合計: ○円/○月</p>
+
+  {% for money in object_list %}
+  <div class="row">
+    <div class="content_flex">
+      <span class="category">{{ money.category.name }}</span>
+      <span class="money">{{ money.money }}円</span>
+    </div>
+    {% if money.note != "" %}
+      <div class="more_area_hidden">
+        <div class="more_area">
+          <div>{{ money.note }}</div>
+          <div>{{ money.use_at }}</div>
+        </div>
+      </div>
+      <button class="open_tab"><i class="fa fa-angle-down fa-lg" aria-hidden="ture"></i></button>
+    {% endif %}
+  </div>
+  {% endfor %}
+
+  <!-- ページネイト -->
+  {% if is_paginated %}
+  <ul>
+    <li>
+      {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}">&lt;&lt; Prev</a>
+      {% else %}
+      &lt;&lt; Prev
+      {% endif %}
+    </li>
+    <li>
+      {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">Next &gt;&gt;</a>
+      {% else %}
+      Next &gt;&gt;
+      {% endif %}
+    </li>
+  <ul>
+  {% endif %}
+
+</main>
+{% endblock %}
+
