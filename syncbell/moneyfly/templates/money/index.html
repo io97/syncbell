@@ -5,11 +5,39 @@
 {% block content %}
 
 {% for money in object_list %}
-{{ money.category.name }}
-
+<ul>
+  <li>
+    <a href="{% url 'moneyfly:detail' money.pk %}">
+      {{ money.category.name }} | {{ money.money }}円
+    </a>
+  </li>
+</ul>
 {% empty %}
-<p>なし</p>
-
+<p>データがありません</p>
 {% endfor %}
+
+<p>
+  <a href="{% url 'moneyfly:create' %}">Add New Money</a>
+</p>
+
+<!-- ページネイト -->
+{% if is_paginated %}
+<ul>
+  <li>
+    {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}">&lt;&lt; Prev</a>
+    {% else %}
+    &lt;&lt; Prev
+    {% endif %}
+  </li>
+  <li>
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">Next &gt;&gt;</a>
+    {% else %}
+    Next &gt;&gt;
+    {% endif %}
+  </li>
+<ul>
+{% endif %}
 
 {% endblock %}

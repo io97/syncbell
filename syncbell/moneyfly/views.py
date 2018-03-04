@@ -5,6 +5,8 @@ from .models import Money
 
 class IndexView(generic.ListView):
     model = Money
+    paginate_by = 8
+    ordering = ['-use_at']
     template_name = "money/index.html"
 
 
